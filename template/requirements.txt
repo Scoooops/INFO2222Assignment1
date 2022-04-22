@@ -1,0 +1,6 @@
+bottle
+sqlite3
+gunicorn
+hashlib
+beaker
+json

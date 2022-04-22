@@ -1,0 +1,40 @@
+<script type="text/javascript" src="js/keygen.js"></script>
+<script>
+    let all_recieved_messages = "";
+    let messages = document.getElementById('chatbox').textContent;
+    console.log(messages);
+    if (messages.length > 0) {
+        const messages_array = messages.split(":");
+        for (let i = 0; i < messages_array.length; i++) {
+            let message = convertBase64ToArrayBuffer(messages_array[i]);
+            console.log(message);
+            var open = indexedDB.open("MyDatabase", 1);
+            open.onsuccess = function() {
+                var db = open.result;
+                var tx = db.transaction("MyObjectStore", "readwrite");
+                var store = tx.objectStore("MyObjectStore");
+
+                var request = store.get(1);
+
+                request.onsuccess = function(event) {
+                    var privateKey = request.result;
+                    privateKey = privateKey['key'];
+                    console.log(privateKey);
+                    privateKeyDecrypt(privateKey, message).then(async function(recieved_message) {
+                        console.log(recieved_message);
+                        let decrypted_message = decodeString(recieved_message);
+                        console.log(decrypted_message);
+                        all_recieved_messages += decrypted_message;
+                        all_recieved_messages += "\n";
+                        document.getElementById('chatbox').textContent = all_recieved_messages;
+                    });
+                };
+
+                tx.oncomplete = function() {
+                    db.close();
+                };
+            }
+
+        }
+    }
+</script>

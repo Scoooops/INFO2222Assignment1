@@ -1,0 +1,29 @@
+<head>
+<link rel="stylesheet" type="text/css" href="css/chat.css">
+<script type="text/javascript" src='js/keygen.js'></script>
+<title>Chatroom</title>
+</head>
+
+<p>
+<ul>
+  <li><a class="active" href="/home">Home</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a href="/register">Register</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li><a href="/chat">Chat</a></li>
+</ul>
+</p>
+<body>
+    <div id="wrapper">
+        <div id="menu">
+            <p class="welcome">Welcome, ${username}<b></b></p>
+        </div>
+        <div id="chatbox"><p>${message}</p></div>
+
+        <form action="/chat" method="post">
+            To: <input name="userto" type="text" id="userto" />
+            <input name="submituser" type="submit" id="submituser" value="Enter" />
+    </div>
+</body>
+<p>

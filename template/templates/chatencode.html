@@ -1,0 +1,36 @@
+<head>
+<link rel="stylesheet" type="text/css" href="css/chat.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/keygen.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
+</script>
+<title>Chatroom</title>
+</head>
+
+<p>
+<ul>
+  <li><a class="active" href="/home">Home</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a href="/register">Register</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li><a href="/chat">Chat</a></li>
+</ul>
+</p>
+<body>
+    <div id="wrapper">
+        <div id="menu">
+            <p class="welcome">Welcome, ${username}<b></b></p>
+        </div>
+        <div id="chatbox"><p></p></div>
+
+        <form action="/chatsuccessful" method="post">
+            <p hidden id="thispublicKey">${text}</p>
+            <p hidden id="username">${username}</p>
+            <p hidden id="userto">${user_to}</p>
+            Message: <input name="usermsg" type="text" id="usermsg"/>
+            <input name="submitmsg" type="submit" id="submitmsg" value="Send" onclick="encrypt()" />
+        </form>
+</body>
+<p>
